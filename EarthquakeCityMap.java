@@ -1,7 +1,9 @@
 package module6;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
@@ -82,7 +84,7 @@ public class EarthquakeCityMap extends PApplet {
 		// FOR TESTING: Set earthquakesURL to be one of the testing files by uncommenting
 		// one of the lines below.  This will work whether you are online or offline
 		//earthquakesURL = "test1.atom";
-		//earthquakesURL = "test2.atom";
+		earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
 		//earthquakesURL = "quiz2.atom";
@@ -117,6 +119,7 @@ public class EarthquakeCityMap extends PApplet {
 
 	    // could be used for debugging
 	    printQuakes();
+	    sortAndPrint(5);
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
@@ -139,7 +142,29 @@ public class EarthquakeCityMap extends PApplet {
 	// TODO: Add the method:
 	//   private void sortAndPrint(int numToPrint)
 	// and then call that method from setUp
+	public void sortAndPrint(int numToPrint){
+		//create a new array from list of earthquake markers
+		
+		Object[] sortedQuakes =  this.quakeMarkers.toArray();
+		//sort array in reverse order
+		Arrays.sort(sortedQuakes);
+		//print out to numToPrint earthquakes
+		
+		int howMany = -1;
+		System.out.println(numToPrint > sortedQuakes.length);
+		if(numToPrint > sortedQuakes.length)
+		{
+			howMany = sortedQuakes.length;
+		}
+		else {howMany = numToPrint;}
+		
+		System.out.println("length is " + sortedQuakes.length);
+		for(int i = sortedQuakes.length-1; i > ((sortedQuakes.length-1) - howMany); i--)
+		{
+			System.out.println(sortedQuakes[i].toString() + " and i is " + i);
+		}
 	
+	}//end sortAndPrint
 	/** Event handler that gets called automatically when the 
 	 * mouse moves.
 	 */

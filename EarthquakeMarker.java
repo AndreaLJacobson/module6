@@ -193,7 +193,7 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 			return -1;
 		}
 		else return 0;
-		
+	
 	}
 	
 	

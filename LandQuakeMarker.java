@@ -1,7 +1,7 @@
 package module6;
 
 import de.fhpotsdam.unfolding.data.PointFeature;
-import java.util.*
+
 import processing.core.PGraphics;
 
 /** Implements a visual marker for land earthquakes on an earthquake map
@@ -40,11 +40,7 @@ public class LandQuakeMarker extends EarthquakeMarker {
 		return (String) getProperty("country");
 	}
 	
-	public int compareTo(EarthquakeMarker marker){
-		//sorts earthquakes in reverse order
-		//compareTo returns neg if calling obejct is bigger so must multiply result by -1 to get reverse order
-		return (this.getMagnitude()).compareTo((marker.getMagnitude()));
-	}
+	
 
 		
 }
