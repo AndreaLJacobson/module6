@@ -1,3 +1,4 @@
+
 package module6;
 
 import java.util.ArrayList;
@@ -50,6 +51,51 @@ public class MyAirport {
 		
 			return null;
 	}//end findAirportCodeBinary
+	
+	public static void intSelectionSort(int[] numbers){ //*******INCOMPLETE******//
+		int i = 0;
+		
+		int smallestIndex = 0;
+		int temp;
+		
+		while(i < (numbers.length-1))
+		{
+			int j = i+1;
+			smallestIndex = i;
+			while(j < (numbers.length))
+			{
+				if(numbers[smallestIndex] > numbers[j])
+				{
+					smallestIndex = j;
+				}
+				j++;
+			}
+			if(smallestIndex != i)
+			{
+				temp = numbers[i];
+				numbers[i] = numbers[smallestIndex];
+				numbers[smallestIndex] = temp;
+			}
+			/*for(int k = 0; k < numbers.length; k++)
+			{
+				System.out.print(" " + numbers[k]);
+			}
+			System.out.println();*/
+			i++;
+		}	
+		
+	}//end intSelectionSort
+	
+	public static void main(String[] args){
+		int[] mynumbers = { 1000, 999, 888, 777, 2, 666,55,33,2,1};
+		intSelectionSort(mynumbers);
+		
+		System.out.print("In ascending order: [");
+		for(int k = 0; k < mynumbers.length; k++)
+		{
+			System.out.print(" " + mynumbers[k]);
+		}
+	}
 }
 
 
