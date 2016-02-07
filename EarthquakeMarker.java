@@ -71,6 +71,7 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		
 		// call abstract method implemented in child class to draw marker shape
 		drawEarthquake(pg, x, y);
+		drawThreatCircle(pg, x, y);
 		
 		// IMPLEMENT: add X over marker if within past day		
 		String age = getStringProperty("age");
@@ -91,6 +92,8 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		
 		// reset to previous styling
 		pg.popStyle();
+		
+		
 		
 	}
 
@@ -127,6 +130,11 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		double miles = 20.0f * Math.pow(1.8, 2*getMagnitude()-5);
 		double km = (miles * kmPerMile);
 		return km;
+	}
+	
+	public void drawThreatCircle(PGraphics pg, float x, float y){
+		//TODO --finish me!!
+		pg.ellipse(x, y, (float)(threatCircle())*this.radius, (float)(threatCircle())*this.radius);
 	}
 	
 	// determine color of marker from depth
