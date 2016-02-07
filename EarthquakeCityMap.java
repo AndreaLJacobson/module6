@@ -84,10 +84,10 @@ public class EarthquakeCityMap extends PApplet {
 		// FOR TESTING: Set earthquakesURL to be one of the testing files by uncommenting
 		// one of the lines below.  This will work whether you are online or offline
 		//earthquakesURL = "test1.atom";
-		earthquakesURL = "test2.atom";
+		//earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
-		//earthquakesURL = "quiz2.atom";
+		earthquakesURL = "quiz2.atom";
 		
 		
 		// (2) Reading in earthquake data and geometric properties
@@ -119,7 +119,8 @@ public class EarthquakeCityMap extends PApplet {
 
 	    // could be used for debugging
 	    printQuakes();
-	    sortAndPrint(5);
+	    sortAndPrint(500
+	    		);
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
@@ -151,17 +152,16 @@ public class EarthquakeCityMap extends PApplet {
 		//print out to numToPrint earthquakes
 		
 		int howMany = -1;
-		System.out.println(numToPrint > sortedQuakes.length);
-		if(numToPrint > sortedQuakes.length)
+		//TEST System.out.println(numToPrint > sortedQuakes.length);
+	if(numToPrint > sortedQuakes.length)
 		{
 			howMany = sortedQuakes.length;
 		}
 		else {howMany = numToPrint;}
 		
-		System.out.println("length is " + sortedQuakes.length);
-		for(int i = sortedQuakes.length-1; i > ((sortedQuakes.length-1) - howMany); i--)
+		for(int i = 0; i < howMany; i++ )
 		{
-			System.out.println(sortedQuakes[i].toString() + " and i is " + i);
+			System.out.println(sortedQuakes[i].toString());
 		}
 	
 	}//end sortAndPrint

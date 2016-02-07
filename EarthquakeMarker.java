@@ -185,12 +185,12 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		//compareTo returns neg if calling object is bigger so must multiply result by -1 to get reverse order
 		if(this.getMagnitude()>marker.getMagnitude())
 		{
-			return 1;
+			return -1;
 		}
 		
 		else if(this.getMagnitude()<marker.getMagnitude())
 		{
-			return -1;
+			return 1;
 		}
 		else return 0;
 	
