@@ -1,8 +1,12 @@
 package module6;
 
+import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.data.PointFeature;
 import processing.core.PConstants;
 import processing.core.PGraphics;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 /** Implements a visual marker for earthquakes on an earthquake map
@@ -71,7 +75,7 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		
 		// call abstract method implemented in child class to draw marker shape
 		drawEarthquake(pg, x, y);
-		drawThreatCircle(pg, x, y);
+		//drawThreatCircle(pg, x, y);
 		
 		// IMPLEMENT: add X over marker if within past day		
 		String age = getStringProperty("age");
@@ -88,6 +92,8 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 					x+radius+buffer, 
 					y-(radius+buffer));
 			
+			drawThreatCircle(pg, x, y);
+			
 		}
 		
 		// reset to previous styling
@@ -100,7 +106,7 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 	/** Show the title of the earthquake if this marker is selected */
 	public void showTitle(PGraphics pg, float x, float y)
 	{
-		String title = getTitle();
+		String title = getTitle() + " Threat cirle: " + round(this.threatCircle(), 2) + "km";
 		pg.pushStyle();
 		
 		pg.rectMode(PConstants.CORNER);
@@ -132,11 +138,25 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		return km;
 	}
 	
-	public void drawThreatCircle(PGraphics pg, float x, float y){
-		//TODO --finish me!!
-		pg.ellipse(x, y, (float)(threatCircle())*this.radius, (float)(threatCircle())*this.radius);
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
 	}
 	
+	public void drawThreatCircle(PGraphics pg, float x, float y){
+		pg.pushStyle();
+		pg.noFill();
+		//pg.ellipse(x, y, (float)kmToPixel((threatCircle())), (float)kmToPixel((threatCircle())));
+		pg.popStyle();
+	}
+	
+	public double kmToPixel(double tc){
+		//converts km to pixels using 12742km as average accepted value for diameter of the earth
+		return(600/12742);
+	}
 	// determine color of marker from depth
 	// We use: Deep = red, intermediate = blue, shallow = yellow
 	private void colorDetermine(PGraphics pg) {

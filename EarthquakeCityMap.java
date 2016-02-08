@@ -26,7 +26,7 @@ import processing.core.PApplet;
  * @author Your name here
  * Date: July 17, 2015
  * */
-public class EarthquakeCityMap extends PApplet {
+public class EarthquakeCityMap extends PApplet{
 	
 	// We will use member variables, instead of local variables, to store the data
 	// that the setUp and draw methods will need to access (as well as other methods)
@@ -81,6 +81,8 @@ public class EarthquakeCityMap extends PApplet {
 		}
 		MapUtils.createDefaultEventDispatcher(this, map);
 		
+		System.out.println("Map height in pixels is: " + map.getHeight());
+		
 		// FOR TESTING: Set earthquakesURL to be one of the testing files by uncommenting
 		// one of the lines below.  This will work whether you are online or offline
 		//earthquakesURL = "test1.atom";
@@ -119,8 +121,7 @@ public class EarthquakeCityMap extends PApplet {
 
 	    // could be used for debugging
 	    printQuakes();
-	    sortAndPrint(500
-	    		);
+	    sortAndPrint(500);
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
@@ -259,6 +260,8 @@ public class EarthquakeCityMap extends PApplet {
 			EarthquakeMarker marker = (EarthquakeMarker)m;
 			if (!marker.isHidden() && marker.isInside(map, mouseX, mouseY)) {
 				lastClicked = marker;
+//				Location here = marker.getLocation();
+//				marker.drawThreatCircle(pg, here.getLat(), here.getLon());
 				// Hide all the other earthquakes and hide
 				for (Marker mhide : quakeMarkers) {
 					if (mhide != lastClicked) {
